@@ -1,0 +1,120 @@
+
+import React, { useState } from 'react';
+import HumanBody from './HumanBody';
+import SelectionsPanel from './SelectionPart';
+import Navbar from './Navbar';
+import ConcernsPanel from './ConcernsPanel';
+const MainComponent = () => {
+    const [selectedBodyParts, setSelectedBodyParts] = useState([]);
+  const [selectedBodyPart, setSelectedBodyPart] = useState(null);
+  const [selectedConcerns, setSelectedConcerns] = useState([]);
+  const [consultationConcerns, setConsultationConcerns] = useState([]);
+  
+  // This is just an example list of concerns. You would fetch or define these based on the body part selected.
+  
+
+  
+  const addSelection = (bodyPart) => {
+    setSelectedBodyParts([...selectedBodyParts, bodyPart]); // This now adds to selectedBodyParts
+    setSelectedBodyPart(bodyPart); // Set the current body part here if needed
+  };
+
+const concerns = {
+    Chest: ['Excess Hair', 'Cherry Angiomas', 'Acne', 'Acne Scarring' , 'Wrinkles' ,'Unwanted Hair' ,'Sagging Skin'], // replace with actual concerns
+    // ... other body parts
+  };
+
+  const toggleConcern = (concern) => {
+    if (selectedConcerns.includes(concern)) {
+      setSelectedConcerns(selectedConcerns.filter((c) => c !== concern));
+    } else {
+      setSelectedConcerns([...selectedConcerns, concern]);
+    }
+  };
+
+
+
+
+
+  
+const addToConsultation = (concerns) => {
+    if (Array.isArray(concerns) && concerns.length > 0) {
+      const newEntry = {
+        bodyPart: selectedBodyPart,
+        concerns: [...concerns]
+      };
+      setConsultationConcerns(prev => [...prev, newEntry]);
+      // Reset states to default to trigger showing the SelectionsPanel
+      setSelectedBodyPart(null);
+      setSelectedConcerns([]);
+    } else {
+      console.error('No concerns to add to consultation');
+    }
+  };
+  
+
+
+  const goBack = () => {
+    setSelectedBodyPart(null); // Reset the selected body part
+  };
+
+
+
+const clearSelections = (bodyPart, concern) => {
+    if (bodyPart && concern) {
+      // Remove a specific concern from a specific body part
+      setConsultationConcerns(consultationConcerns.map(entry =>
+        entry.bodyPart === bodyPart
+          ? { ...entry, concerns: entry.concerns.filter(c => c !== concern) }
+          : entry
+      ).filter(entry => entry.concerns.length > 0));
+    } else {
+      // Clear all concerns if no specific one is provided
+      setConsultationConcerns([]);
+    }
+  };
+
+  const finishConsultation = () => {
+    // Logic to handle the end of the consultation, for example:
+    alert('Consultation finished!'); // Replace with a more suitable action
+  };
+  return (
+   
+    
+
+    <>
+    <Navbar />
+    <div className='flex flex-col md:flex-row min-h-screen bg-grey'>
+      <div className='w-[55%]'>
+        
+        <HumanBody addSelection={addSelection} 
+        showOverlay={selectedBodyPart !== null}
+        />
+        
+      </div>
+      <div className='w-px bg-gray-300 min-h-full'></div>
+      <div className='w-[45%] px-[3%] py-[2%]'>
+        {selectedBodyPart ? (
+          <ConcernsPanel
+          bodyPart={selectedBodyPart}
+          concerns={concerns[selectedBodyPart] || []}
+          toggleConcern={toggleConcern}
+          selectedConcerns={selectedConcerns}
+          goBack={goBack}
+          addToConsultation={addToConsultation}
+        />
+        ) : (
+          <SelectionsPanel selectedBodyParts={selectedBodyParts}
+          consultationConcerns={consultationConcerns}
+          clearSelections={clearSelections}
+          finishConsultation={finishConsultation}
+          />
+        )}
+      </div>
+    </div>
+  </>
+   
+  );
+};
+
+export default MainComponent;

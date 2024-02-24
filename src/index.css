@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+
+  .checkbox-round {
+    @apply rounded-full border-gray-300; /* Adjusted: removed form-checkbox and size classes */
+    height: 20px; /* Custom size as needed */
+    width: 20px; /* Custom size as needed */
+    border-radius: 50%; /* This ensures the round shape */
+  }
+  
+  /* Checked state styles */
+  .checkbox-round:checked {
+    @apply bg-aqua border-aqua; /* Adjusted: changed to bg-aqua */
+    /* If bg-aqua is not defined, use a color code like this: */
+    /* background-color: #00FFFF; */ /* Aqua color code */
+  }
+  
+  /* Focus state styles, if needed */
+  .checkbox-round:focus {
+    @apply ring-2 ring-aqua; /* Adjusted: changed to ring-aqua */
+    outline: none; /* Removes default focus outline */
+  }

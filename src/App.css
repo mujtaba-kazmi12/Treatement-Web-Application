@@ -1,0 +1,56 @@
+/* App.css */
+
+/* Add any additional styling here */
+.female-svg {
+  display: none;
+}
+
+.female-svg.is-active {
+  display: block;
+}
+
+.switch-button {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.plus-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #27ae60;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.back-button {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  padding: 10px;
+  cursor: pointer;
+  display: none;
+}
+
+.back-button-hidden {
+  display: none;
+}
+
+.plus-button-hidden {
+  display: none;
+}
