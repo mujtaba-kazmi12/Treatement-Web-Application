@@ -20,8 +20,18 @@ const MainComponent = () => {
   };
 
 const concerns = {
-    Chest: ['Excess Hair', 'Cherry Angiomas', 'Acne', 'Acne Scarring' , 'Wrinkles' ,'Unwanted Hair' ,'Sagging Skin'], // replace with actual concerns
-    // ... other body parts
+    Chest: ['Excess Hair', 'Cherry Angiomas', 'Acne', 'Acne Scarring' , 'Wrinkles' ,'Unwanted Hair' ,'Sagging Skin'],
+    Arm: ['Excess Hair', 'Loose Skin', 'Acne', 'Acne Scarring' , 'Excess Fat' ,'Wrinkles' ,'Unwanted Hair','Sagging Skin'],
+    Abdomen: ['Muffin Top', 'Ecxess Fat'],
+    Intimate: ['Excess Hair ', 'Unwanted Hair'],
+    Hands: ['Crepey, Aging Skin', 'Brown Spots','Red Spots','Cherry Angiomas','Wrinkles'],
+    Thighs: ['Excess Hair', 'Loose Skin','Unwanted Hair','Sagging Skin'],
+    Legs: ['Excess Hair', 'Loose Skin','Unwanted Hair','Sagging Skin'],
+    Back: ['Excess Hair', 'Acne','Acne Scarring','Excess Fat','Unwanted Hair'],
+    Buttocks: ['Excess Hair'],
+    Face:['Excess Hair','Hyperpigmentation','Freckles','Fine Lines','Dry Skin','Dark Circles','Crepey, Aging Skin','Combination Skin','Clogged Pores','Brown Spots','Sunspots','11s','Large Pores','Facial Folds','Cherry Angiomas','Loose Skin','Drooping Forehead','Acne','Acne Scarring','Sagging Eyelids','Puffy Eyes','Excess Fat','Crows Feet','Bags Under Eyes'],
+
+     
   };
 
   const toggleConcern = (concern) => {

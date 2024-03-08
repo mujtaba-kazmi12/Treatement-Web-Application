@@ -1,7 +1,12 @@
 
 import React from 'react';
-
+import { useNavigate } from 'react-router-dom';
 const SelectionsPanel = ({ consultationConcerns, clearSelections, finishConsultation }) => {
+  const navigate = useNavigate();
+  const handleFinishConsultation = () => {
+    navigate('/form', { state: { consultationConcerns } });
+    
+  };
   // Check to see if we have any selections
   const hasSelections = consultationConcerns.length > 0;
 
@@ -38,7 +43,7 @@ const SelectionsPanel = ({ consultationConcerns, clearSelections, finishConsulta
         
           ))}
           <button
-            onClick={finishConsultation}
+            onClick={handleFinishConsultation}
             className='mt-6 bg-gray-800 hover:bg-blue-700 text-white py-2 px-4 rounded-lg w-full'
           >
             Finish Consultation

@@ -105,7 +105,7 @@ const HumanBody = ({addSelection,showOverlay}) => {
                     className={`absolute top-[22%] left-[90%] transform -translate-x-1/2 -translate-y-1/2 bg-white  rounded-full ${
                         currentSVG === 2 ? 'hidden' : 'block'
                     } hover:bg-aqua hover:text-white hover:scale-110 transition-transform duration-300 text-aqua flex items-center justify-center w-5 h-5`}
-                    onClick={switchToFace}
+                    onClick={() => handleBodyPartClick('Arm')}
                 >
                    <h1 className=' font-bold'>+</h1>
                 </button>
@@ -115,7 +115,7 @@ const HumanBody = ({addSelection,showOverlay}) => {
                     className={`absolute top-[35%] left-[60%] transform -translate-x-1/2 -translate-y-1/2 bg-white  rounded-full ${
                         currentSVG === 2 ? 'hidden' : 'block'
                     } hover:bg-aqua hover:text-white hover:scale-110 transition-transform duration-300 text-aqua flex items-center justify-center w-5 h-5`}
-                    onClick={switchToFace}
+                    onClick={() => handleBodyPartClick('Abdomen')}
                 >
                     <h1 className=' font-bold'>+</h1>
                 </button>
@@ -125,7 +125,7 @@ const HumanBody = ({addSelection,showOverlay}) => {
                     className={`absolute top-[43%] left-[30%] transform -translate-x-1/2 -translate-y-1/2 bg-white  rounded-full ${
                         currentSVG === 2 ? 'hidden' : 'block'
                     } hover:bg-aqua hover:text-white hover:scale-110 transition-transform duration-300 text-aqua flex items-center justify-center w-5 h-5`}
-                    onClick={switchToFace}
+                    onClick={() => handleBodyPartClick('Intimate')}
                 >
                     <h1 className=' font-bold'>+</h1>
                 </button>
@@ -135,7 +135,7 @@ const HumanBody = ({addSelection,showOverlay}) => {
                     className={`absolute top-[47%] left-[91%] transform -translate-x-1/2 -translate-y-1/2 bg-white  rounded-full ${
                         currentSVG === 2 ? 'hidden' : 'block'
                     } hover:bg-aqua hover:text-white hover:scale-110 transition-transform duration-300 text-aqua flex items-center justify-center w-5 h-5`}
-                    onClick={switchToFace}
+                    onClick={() => handleBodyPartClick('Hands')}
                 >
                     <h1 className=' font-bold'>+</h1>
                 </button>
@@ -147,7 +147,7 @@ const HumanBody = ({addSelection,showOverlay}) => {
                     className={`absolute top-[58%] left-[34%] transform -translate-x-1/2 -translate-y-1/2 bg-white  rounded-full ${
                         currentSVG === 2 ? 'hidden' : 'block'
                     } hover:bg-aqua hover:text-white hover:scale-110 transition-transform duration-300 text-aqua flex items-center justify-center w-5 h-5`}
-                    onClick={switchToFace}
+                    onClick={() => handleBodyPartClick('Thighs')}
                 >
                     <h1 className=' font-bold'>+</h1>
                 </button>
@@ -157,7 +157,7 @@ const HumanBody = ({addSelection,showOverlay}) => {
                     className={`absolute top-[78%] left-[60%] transform -translate-x-1/2 -translate-y-1/2 bg-white  rounded-full ${
                         currentSVG === 2 ? 'hidden' : 'block'
                     } hover:bg-aqua hover:text-white hover:scale-110 transition-transform duration-300 text-aqua flex items-center justify-center w-5 h-5`}
-                    onClick={switchToFace}
+                    onClick={() => handleBodyPartClick('Legs')}
                 >
                     <h1 className=' font-bold'>+</h1>
                 </button>
@@ -172,7 +172,7 @@ const HumanBody = ({addSelection,showOverlay}) => {
                     className={`absolute top-[45%] left-[30%] transform -translate-x-1/2 -translate-y-1/2 bg-white  rounded-full ${
                         currentSVG === 2 ? 'hidden' : 'block'
                     } hover:bg-aqua hover:text-white hover:scale-110 transition-transform duration-300 text-aqua flex items-center justify-center w-5 h-5`}
-                    onClick={switchToFace}
+                    onClick={() => handleBodyPartClick('Buttocks')}
                 >
                     <h1 className=' font-bold'>+</h1>
                 </button>
@@ -183,7 +183,7 @@ const HumanBody = ({addSelection,showOverlay}) => {
                     className={`absolute top-[32%] left-[60%] transform -translate-x-1/2 -translate-y-1/2 bg-white  rounded-full ${
                         currentSVG === 2 ? 'hidden' : 'block'
                     } hover:bg-aqua hover:text-white hover:scale-110 transition-transform duration-300 text-aqua flex items-center justify-center w-5 h-5`}
-                    onClick={switchToFace}
+                    onClick={() => handleBodyPartClick('Back')}
                 >
                     <h1 className=' font-bold'>+</h1>
                 </button>
@@ -215,10 +215,10 @@ const HumanBody = ({addSelection,showOverlay}) => {
                {currentSVG === 2 && (
                       <button
                       id="plusButton"
-                      className={`absolute top-[32%] left-[60%] transform -translate-x-1/2 -translate-y-1/2 bg-white  rounded-full ${
+                      className={`absolute top-[20%] left-[70%] transform -translate-x-1/2 -translate-y-1/2 bg-white  rounded-full ${
                           currentSVG === 2 ? 'block' : 'hidden'
                       } hover:bg-aqua hover:text-white hover:scale-110 transition-transform duration-300 text-aqua flex items-center justify-center w-5 h-5`}
-                      onClick={switchToFace}
+                      onClick={() => handleBodyPartClick('Face')}
                   >
                       <h1 className=' font-bold'>+</h1>
                   </button>
