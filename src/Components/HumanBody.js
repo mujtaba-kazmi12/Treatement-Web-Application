@@ -51,9 +51,9 @@ const HumanBody = ({addSelection,showOverlay}) => {
 
     return (
         
-        <div className='w-[full] h-[93vh] flex flex-col '>
+        <div className='w-[full] h-[93vh] flex flex-col'>
         {showOverlay && (
-        <div className="absolute inset-0 bg-black opacity-50 w-[55%] h-[94%] mt-[3.3%]" style={{ zIndex: 10 }}></div> // This div will act as the overlay
+        <div className="absolute inset-0 bg-black opacity-50 w-[55%] h-[94%] mt-[3.3%] hidden md:block" style={{ zIndex: 10 }}></div> // This div will act as the overlay
       )}
           
         

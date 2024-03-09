@@ -94,8 +94,8 @@ const clearSelections = (bodyPart, concern) => {
 
     <>
     <Navbar />
-    <div className='flex flex-col md:flex-row min-h-screen bg-grey'>
-      <div className='w-[55%]'>
+    <div className='flex flex-col md:flex-row min-h-[92vh] bg-grey'>
+      <div className='w-[100%] mt-5 md:w-[55%] md:mt-0'>
         
         <HumanBody addSelection={addSelection} 
         showOverlay={selectedBodyPart !== null}
@@ -103,7 +103,7 @@ const clearSelections = (bodyPart, concern) => {
         
       </div>
       <div className='w-px bg-gray-300 min-h-full'></div>
-      <div className='w-[45%] px-[3%] py-[2%]'>
+      <div className='w-[100%] md:w-[45%] px-[3%] py-[2%]'>
         {selectedBodyPart ? (
           <ConcernsPanel
           bodyPart={selectedBodyPart}

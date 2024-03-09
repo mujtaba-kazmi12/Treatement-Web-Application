@@ -22,7 +22,8 @@ const SelectionsPanel = ({ consultationConcerns, clearSelections, finishConsulta
       </div>
 
       {hasSelections ? (
-        <div className='my-4 flex flex-col justify-between h-[72vh] '>
+        <>
+        <div className='my-4 flex flex-col justify-between h-[72vh] hidden md:flex lg:flex'>
           {/* Iterate over the consultationConcerns and display them along with their body parts */}
           {consultationConcerns.map((entry, index) => (
             <div key={index} className='mb-6'>
@@ -49,6 +50,36 @@ const SelectionsPanel = ({ consultationConcerns, clearSelections, finishConsulta
             Finish Consultation
           </button>
         </div>
+
+        <div className='my-4 flex flex-col justify-between h-[30vh] lg:hidden md:hidden'>
+          {/* Iterate over the consultationConcerns and display them along with their body parts */}
+          {consultationConcerns.map((entry, index) => (
+            <div key={index} className='mb-6'>
+            <h3 className='text-lg font-semibold mb-1'>{entry.bodyPart}</h3>
+            <div className='w-full border-b border-gray-400'></div>
+            <div className='flex flex-wrap gap-2 mt-3'>
+              {entry.concerns.map((concern, concernIndex) => (
+                <div key={concernIndex} className='flex items-center border border-gray-300 bg-gray-100 rounded-xl p-2 my-1'>
+                  <span className='text-gray-800 mr-2'>{concern}</span>
+                  <button onClick={() => clearSelections(entry.bodyPart, concern)} className='rounded-full bg-red-200 text-red-600 px-2'>
+                    ×
+                  </button>
+                </div>
+              ))}
+            </div>
+          </div>
+
+        
+          ))}
+          <button
+            onClick={handleFinishConsultation}
+            className='mt-6 bg-gray-800 hover:bg-blue-700 text-white py-2 px-4 rounded-lg w-full'
+          >
+            Finish Consultation
+          </button>
+        </div>
+        </>
+        
       ) : (
         <div className='mt-[4vh]'>
         <p className='text-gray-600'>You haven't selected any concerns.</p>
