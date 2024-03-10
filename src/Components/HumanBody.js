@@ -105,7 +105,7 @@ const HumanBody = ({addSelection,showOverlay}) => {
                     className={`absolute top-[22%] left-[90%] transform -translate-x-1/2 -translate-y-1/2 bg-white  rounded-full ${
                         currentSVG === 2 ? 'hidden' : 'block'
                     } hover:bg-aqua hover:text-white hover:scale-110 transition-transform duration-300 text-aqua flex items-center justify-center w-5 h-5`}
-                    onClick={() => handleBodyPartClick('Arm')}
+                    onClick={() => handleBodyPartClick('Arms')}
                 >
                    <h1 className=' font-bold'>+</h1>
                 </button>

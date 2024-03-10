@@ -21,7 +21,7 @@ const MainComponent = () => {
 
 const concerns = {
     Chest: ['Excess Hair', 'Cherry Angiomas', 'Acne', 'Acne Scarring' , 'Wrinkles' ,'Unwanted Hair' ,'Sagging Skin'],
-    Arm: ['Excess Hair', 'Loose Skin', 'Acne', 'Acne Scarring' , 'Excess Fat' ,'Wrinkles' ,'Unwanted Hair','Sagging Skin'],
+    Arms: ['Excess Hair', 'Loose Skin', 'Acne', 'Acne Scarring' , 'Excess Fat' ,'Wrinkles' ,'Unwanted Hair','Sagging Skin'],
     Abdomen: ['Muffin Top', 'Ecxess Fat'],
     Intimate: ['Excess Hair ', 'Unwanted Hair'],
     Hands: ['Crepey, Aging Skin', 'Brown Spots','Red Spots','Cherry Angiomas','Wrinkles'],

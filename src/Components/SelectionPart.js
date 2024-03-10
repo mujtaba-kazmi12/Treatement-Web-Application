@@ -23,7 +23,7 @@ const SelectionsPanel = ({ consultationConcerns, clearSelections, finishConsulta
 
       {hasSelections ? (
         <>
-        <div className='my-4 flex flex-col justify-between h-[72vh] hidden md:flex lg:flex'>
+        <div className='my-4 flex flex-col justify-between h-[72vh] hidden md:flex lg:flex overflow-y-auto'>
           {/* Iterate over the consultationConcerns and display them along with their body parts */}
           {consultationConcerns.map((entry, index) => (
             <div key={index} className='mb-6'>
