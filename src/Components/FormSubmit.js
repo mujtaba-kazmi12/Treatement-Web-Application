@@ -40,7 +40,7 @@ const ContactForm = () => {
                 const results = await response.json();
                 // Handle success, possibly navigate to a results page or display in current component
                 console.log(results);
-                navigate(`/page?message=hello`);
+                navigate(`/page?${queryParams.toString()}`);
             } else {
                 // Handle HTTP error responses
                 console.error('Server error:', response.statusText);
