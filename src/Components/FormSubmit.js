@@ -24,7 +24,7 @@ const ContactForm = () => {
         const body = {
             firstName,
             toEmail,
-            email_string: `https://treatement.vercel.app/?${queryParams.toString()}`, // Including the static string as part of the body
+            email_string: `https://treatement.vercel.app/page?${queryParams.toString()}`, // Including the static string as part of the body
         };
     
         try {
