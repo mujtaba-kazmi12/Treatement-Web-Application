@@ -230,7 +230,7 @@ const ConditionLayout = () => {
     <>
       <Navbar />
       <div className="container mx-auto px-6 py-8 mt-5">
-        {conditionsData.map((condition) => (
+        {conditionsData?.map((condition) => (
           <ConditionSection key={condition.concern} condition={condition} />
         ))}
       </div>

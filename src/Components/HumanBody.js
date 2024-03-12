@@ -218,7 +218,55 @@ const HumanBody = ({addSelection,showOverlay}) => {
                       className={`absolute top-[20%] left-[70%] transform -translate-x-1/2 -translate-y-1/2 bg-white  rounded-full ${
                           currentSVG === 2 ? 'block' : 'hidden'
                       } hover:bg-aqua hover:text-white hover:scale-110 transition-transform duration-300 text-aqua flex items-center justify-center w-5 h-5`}
-                      onClick={() => handleBodyPartClick('Face')}
+                      onClick={() => handleBodyPartClick('Upper Face')}
+                  >
+                      <h1 className=' font-bold'>+</h1>
+                  </button>
+                    )}
+
+{currentSVG === 2 && (
+                      <button
+                      id="plusButton"
+                      className={`absolute top-[35%] left-[30%] transform -translate-x-1/2 -translate-y-1/2 bg-white  rounded-full ${
+                          currentSVG === 2 ? 'block' : 'hidden'
+                      } hover:bg-aqua hover:text-white hover:scale-110 transition-transform duration-300 text-aqua flex items-center justify-center w-5 h-5`}
+                      onClick={() => handleBodyPartClick('Midface')}
+                  >
+                      <h1 className=' font-bold'>+</h1>
+                  </button>
+                    )}
+
+{currentSVG === 2 && (
+                      <button
+                      id="plusButton"
+                      className={`absolute top-[55%] left-[55%] transform -translate-x-1/2 -translate-y-1/2 bg-white  rounded-full ${
+                          currentSVG === 2 ? 'block' : 'hidden'
+                      } hover:bg-aqua hover:text-white hover:scale-110 transition-transform duration-300 text-aqua flex items-center justify-center w-5 h-5`}
+                      onClick={() => handleBodyPartClick('Lips')}
+                  >
+                      <h1 className=' font-bold'>+</h1>
+                  </button>
+                    )}
+
+{currentSVG === 2 && (
+                      <button
+                      id="plusButton"
+                      className={`absolute top-[70%] left-[30%] transform -translate-x-1/2 -translate-y-1/2 bg-white  rounded-full ${
+                          currentSVG === 2 ? 'block' : 'hidden'
+                      } hover:bg-aqua hover:text-white hover:scale-110 transition-transform duration-300 text-aqua flex items-center justify-center w-5 h-5`}
+                      onClick={() => handleBodyPartClick('Lower Face')}
+                  >
+                      <h1 className=' font-bold'>+</h1>
+                  </button>
+                    )}
+
+{currentSVG === 2 && (
+                      <button
+                      id="plusButton"
+                      className={`absolute top-[90%] left-[30%] transform -translate-x-1/2 -translate-y-1/2 bg-white  rounded-full ${
+                          currentSVG === 2 ? 'block' : 'hidden'
+                      } hover:bg-aqua hover:text-white hover:scale-110 transition-transform duration-300 text-aqua flex items-center justify-center w-5 h-5`}
+                      onClick={() => handleBodyPartClick('Neck')}
                   >
                       <h1 className=' font-bold'>+</h1>
                   </button>
