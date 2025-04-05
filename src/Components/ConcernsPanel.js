@@ -1,5 +1,3 @@
-
-
 import React from 'react';
 import Drawer from '@mui/material/Drawer';
 
@@ -19,12 +17,12 @@ const ConcernsPanel = ({ bodyPart, concerns, toggleConcern, selectedConcerns, go
               type="checkbox"
               checked={selectedConcerns.includes(concern)}
               onChange={() => toggleConcern(concern)}
-              className='form-checkbox rounded-full text-aqua border-gray-300 focus:ring-0' // Add focus:ring-0 to remove ring on focus
+              className='form-checkbox rounded-full text-strella border-gray-300 focus:ring-0' // Add focus:ring-0 to remove ring on focus
               style={{ 
                 appearance: 'none', 
                 height: '20px', 
                 width: '20px',
-                backgroundColor: selectedConcerns.includes(concern) ? '#47a89b' : 'transparent', // Use a proper color code here
+                backgroundColor: selectedConcerns.includes(concern) ? '#b59449' : 'transparent', // Use a proper color code here
                 borderColor: 'lightgrey', // Use a proper color code here
                 borderWidth: '2px'
               }}
@@ -35,7 +33,7 @@ const ConcernsPanel = ({ bodyPart, concerns, toggleConcern, selectedConcerns, go
       </div>
       </>
      
-      <button className='mt-1 bg-gray-800 text-white py-2 px-4 rounded-lg w-full'
+      <button className='mt-1 bg-strella text-white py-2 px-4 rounded-lg w-full'
        onClick={() => addToConsultation(selectedConcerns)}
       >
         Add to My Consultation ({selectedConcerns.length})
@@ -56,12 +54,12 @@ const ConcernsPanel = ({ bodyPart, concerns, toggleConcern, selectedConcerns, go
                 type="checkbox"
                 checked={selectedConcerns.includes(concern)}
                 onChange={() => toggleConcern(concern)}
-                className='form-checkbox rounded-full text-aqua border-gray-300 focus:ring-0'
+                className='form-checkbox rounded-full text-strella border-gray-300 focus:ring-0'
                 style={{ 
                   appearance: 'none', 
                   height: '20px', 
                   width: '20px',
-                  backgroundColor: selectedConcerns.includes(concern) ? '#47a89b' : 'transparent',
+                  backgroundColor: selectedConcerns.includes(concern) ? '#b59449' : 'transparent',
                   borderColor: 'lightgrey',
                   borderWidth: '2px'
                 }}
@@ -71,7 +69,7 @@ const ConcernsPanel = ({ bodyPart, concerns, toggleConcern, selectedConcerns, go
           ))}
         </div>
         
-        <button className='mt-1 bg-gray-800 text-white py-2 px-4 rounded-lg w-full'
+        <button className='mt-1 bg-strella text-white py-2 px-4 rounded-lg w-full'
           onClick={() => addToConsultation(selectedConcerns)}
         >
           Add to My Consultation ({selectedConcerns.length})

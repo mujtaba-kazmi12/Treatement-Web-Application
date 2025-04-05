@@ -24,7 +24,8 @@ module.exports = {
         "grey":"#f5f5f5",
         "whiteS":"#f8f8ff",
         'aqua':"#47a89b",
-        "dark":"#A9A9A9"
+        "dark":"#A9A9A9",
+        'strella': '#b59449'     // New Strella theme color
         
         // Add other colors as needed
       },

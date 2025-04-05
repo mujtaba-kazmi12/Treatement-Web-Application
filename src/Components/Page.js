@@ -1,85 +1,3 @@
-
-// import React, { useState, useEffect } from 'react';
-// import { useLocation } from 'react-router-dom';
-// import Navbar from './Navbar';
-
-// const TreatmentCard = ({ name, description }) => (
-//   <div className="flex flex-col items-stretch bg-white shadow-lg rounded-lg p-4 m-2 w-64 h-80">
-//     <h3 className="font-bold mb-2">{name}</h3>
-//     <p className="text-gray-600 text-sm flex-grow mb-4">{description}</p>
-//     <button className="bg-black text-white text-sm px-4 py-2 rounded hover:bg-gray-800 transition-all duration-300 ease-in-out">
-//       Learn More
-//     </button>
-//   </div>
-// );
-
-// const ConditionSection = ({ condition }) => (
-//   <div className="flex flex-col md:flex-row md:items-start mb-10">
-//     <div className="md:w-1/4">
-//       <h2 className="text-2xl font-bold">{condition.concern}</h2>
-//       <p className="text-md text-gray-800">{condition.bodyParts}</p>
-//       <p className="text-sm text-gray-600 mt-1 mb-6 md:mb-0">These are the treatments we recommend.</p>
-//     </div>
-//     <div className="md:flex-1">
-//       <div className="flex flex-wrap justify-start items-stretch -m-2">
-//         {condition.treatments.map((treatment, index) => (
-//           <TreatmentCard key={index} {...treatment} />
-//         ))}
-//       </div>
-//     </div>
-//   </div>
-// );
-
-// const ConditionLayout = () => {
-//   const location = useLocation();
-
-//   const [conditionsData, setConditionsData] = useState([]); // Changed state to hold fetched conditions data
-
-//   useEffect(() => {
-//     const queryParams = new URLSearchParams(location.search);
-//     const selectionsEncoded = queryParams.get('selections');
-
-//     if (selectionsEncoded) {
-//       const apiEndpoint = `https://health-app-backend-ten.vercel.app/getTreatments?selections=${selectionsEncoded}`;
-
-//       const fetchData = async () => {
-//         try {
-//           const response = await fetch(apiEndpoint, {
-//             method: 'POST', 
-//             headers: {
-//               // Define necessary headers
-//             },
-//           });
-
-//           if (!response.ok) {
-//             throw new Error(`HTTP error! status: ${response.status}`);
-//           }
-
-//           const data = await response.json();
-//           setConditionsData(data); // Set the fetched data
-//         } catch (error) {
-//           console.error('Error fetching data:', error);
-//         }
-//       };
-
-//       fetchData();
-//     }
-//   }, [location.search]);
-
-//   return (
-//     <>
-//       <Navbar />
-//       <div className="container mx-auto px-6 py-8 mt-5">
-//         {conditionsData.map((condition, index) => (
-//           <ConditionSection key={index} condition={condition} />
-//         ))}
-//       </div>
-//     </>
-//   );
-// };
-
-// export default ConditionLayout;
-
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import Navbar from './Navbar';
@@ -97,7 +15,7 @@ const TreatmentCard = ({ treatment, onClick }) => (
   <div onClick={() => onClick(treatment)} className="cursor-pointer flex flex-col items-stretch bg-white shadow-lg rounded-lg p-4 m-2 w-64 h-80">
     <h3 className="font-bold mb-2">{treatment.name}</h3>
     <p className="text-gray-600 text-sm flex-grow mb-4">{treatment.description}</p>
-    <button className="bg-black text-white text-sm px-4 py-2 rounded hover:bg-gray-800 transition-all duration-300 ease-in-out">
+    <button className="bg-strella text-white text-sm px-4 py-2 rounded hover:bg-opacity-90 transition-colors duration-300">
       Learn More
     </button>
   </div>
@@ -122,7 +40,7 @@ const TreatmentDetailsDrawer = ({ treatment, isOpen, onClose }) => {
       
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop:'20px'}}>
           <Typography variant="h5" component="div" gutterBottom sx={{ fontWeight: 'bold' }}>
-            Recommended based on your unique concern: <Typography variant="h5" component="div" gutterBottom sx={{ fontWeight: 'bold',color: '#1a9383' }} >{treatment.name}</Typography>
+            Recommended based on your unique concern: <Typography variant="h5" component="div" gutterBottom sx={{ fontWeight: 'bold',color: '#b59449' }} >{treatment.name}</Typography>
           </Typography>
          
         </div>
@@ -149,7 +67,7 @@ const TreatmentDetailsDrawer = ({ treatment, isOpen, onClose }) => {
                   <Typography sx={{ fontSize: '0.875rem', color: 'text.secondary', marginBottom: '8px' }} gutterBottom>
                     {key.replace(/#/g, '')}
                   </Typography>
-                  <Typography variant="h6" component="div" gutterBottom sx={{color: '#1a9383' }}>
+                  <Typography variant="h6" component="div" gutterBottom sx={{color: '#b59449' }}>
                     {value}
                   </Typography>
                 </CardContent>

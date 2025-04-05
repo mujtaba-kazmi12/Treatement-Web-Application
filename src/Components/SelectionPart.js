@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 const SelectionsPanel = ({ consultationConcerns, clearSelections, finishConsultation }) => {
@@ -45,7 +44,7 @@ const SelectionsPanel = ({ consultationConcerns, clearSelections, finishConsulta
           ))}
           <button
             onClick={handleFinishConsultation}
-            className='mt-6 bg-gray-800 hover:bg-blue-700 text-white py-2 px-4 rounded-lg w-full'
+            className='mt-6 bg-strella hover:bg-opacity-90 text-white py-2 px-4 rounded-lg w-full'
           >
             Finish Consultation
           </button>
@@ -73,7 +72,7 @@ const SelectionsPanel = ({ consultationConcerns, clearSelections, finishConsulta
           ))}
           <button
             onClick={handleFinishConsultation}
-            className='mt-6 bg-gray-800 hover:bg-blue-700 text-white py-2 px-4 rounded-lg w-full'
+            className='mt-6 bg-strella hover:bg-opacity-90 text-white py-2 px-4 rounded-lg w-full'
           >
             Finish Consultation
           </button>
