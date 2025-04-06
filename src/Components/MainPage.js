@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import HumanBody from './HumanBody';
 import SelectionsPanel from './SelectionPart';
@@ -20,15 +19,16 @@ const MainComponent = () => {
   };
 
 const concerns = {
-    Chest: ['Excess Hair', 'Cherry Angiomas', 'Acne', 'Acne Scarring' , 'Wrinkles' ,'Unwanted Hair' ,'Sagging Skin'],
-    Arms: ['Excess Hair', 'Loose Skin', 'Acne', 'Acne Scarring' , 'Excess Fat' ,'Wrinkles' ,'Unwanted Hair','Sagging Skin'],
-    Abdomen: ['Muffin Top', 'Ecxess Fat'],
+    Chest: ['Excess Hair', 'Cherry Angiomas', 'Acne', 'Acne Scarring' , 'Wrinkles' ,'Unwanted Hair' ,'Sagging Skin', 'Unwanted Tattoos'],
+    Arms: ['Excess Hair', 'Loose Skin', 'Acne', 'Acne Scarring' , 'Excess Fat' ,'Wrinkles' ,'Unwanted Hair','Sagging Skin', 'Unwanted Tattoos'],
+    Abdomen: ['Muffin Top', 'Excess Fat'],
     Intimate: ['Excess Hair ', 'Unwanted Hair'],
-    Hands: ['Crepey, Aging Skin', 'Brown Spots','Red Spots','Cherry Angiomas','Wrinkles'],
+    Hands: ['Crepey, Aging Skin', 'Brown Spots','Red Spots','Cherry Angiomas','Wrinkles', 'Unwanted Tattoos'],
     Thighs: ['Excess Hair', 'Loose Skin','Unwanted Hair','Sagging Skin'],
-    Legs: ['Excess Hair', 'Loose Skin','Unwanted Hair','Sagging Skin'],
-    Back: ['Excess Hair', 'Acne','Acne Scarring','Excess Fat','Unwanted Hair'],
+    Legs: ['Excess Hair', 'Loose Skin','Unwanted Hair','Sagging Skin', 'Unwanted Tattoos'],
+    Back: ['Excess Hair', 'Acne','Acne Scarring','Excess Fat','Unwanted Hair', 'Unwanted Tattoos'],
     Buttocks: ['Excess Hair'],
+    Underarms: ['Excessive Underarm Sweating', 'Underarm Odor'],
     "Upper Face":['Excess Hair','Hyperpigmentation','Freckles','Fine Lines','Dry Skin','Dark Circles','Crepey, Aging Skin','Combination Skin','Clogged Pores','Brown Spots','Sunspots','11s','Large Pores','Facial Folds','Cherry Angiomas','Loose Skin','Drooping Forehead','Acne','Acne Scarring','Sagging Eyelids','Puffy Eyes','Excess Fat','Crows Feet','Bags Under Eyes'],
     Midface:["Hair",
     "Hyperpigmentation",

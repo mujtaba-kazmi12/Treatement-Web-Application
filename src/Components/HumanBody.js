@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import FemaleFront from '../images/front.svg';
 import FemaleBack from '../images/back.svg';
@@ -106,6 +105,16 @@ const HumanBody = ({addSelection,showOverlay}) => {
                         currentSVG === 2 ? 'hidden' : 'block'
                     } hover:bg-aqua hover:text-white hover:scale-110 transition-transform duration-300 text-aqua flex items-center justify-center w-5 h-5`}
                     onClick={() => handleBodyPartClick('Arms')}
+                >
+                   <h1 className=' font-bold'>+</h1>
+                </button>
+
+                <button
+                    id="plusButton"
+                    className={`absolute top-[28%] left-[75%] transform -translate-x-1/2 -translate-y-1/2 bg-white  rounded-full ${
+                        currentSVG === 2 ? 'hidden' : 'block'
+                    } hover:bg-aqua hover:text-white hover:scale-110 transition-transform duration-300 text-aqua flex items-center justify-center w-5 h-5`}
+                    onClick={() => handleBodyPartClick('Underarms')}
                 >
                    <h1 className=' font-bold'>+</h1>
                 </button>
