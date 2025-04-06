@@ -21,69 +21,32 @@ const ContactForm = () => {
         const firstName = formData.get('firstName');
         const toEmail = formData.get('email');
     
-        // Make sure consultationConcerns exists and is properly structured
-        if (!consultationConcerns || !Array.isArray(consultationConcerns) || consultationConcerns.length === 0) {
-            console.error('Invalid or empty consultationConcerns', consultationConcerns);
-            setIsLoading(false);
-            alert('Missing consultation data. Please go back and try again.');
-            return;
-        }
-
-        // Ensure each object in the array has the correct format
-        const validConsultationData = consultationConcerns.map(item => ({
-            bodyPart: item.bodyPart,
-            concerns: Array.isArray(item.concerns) ? item.concerns : []
-        }));
-    
         // Preparing the query parameters for the selections only
-        const selectionsJson = JSON.stringify(validConsultationData);
-        console.log('Sending to API:', selectionsJson);
-        
-        // Directly use the encoded query parameter instead of using URLSearchParams
-        // This avoids double-encoding issues
-        const encodedSelections = encodeURIComponent(selectionsJson);
-        const apiUrl = `https://treatment-backend.vercel.app/getTreatments?selections=${encodedSelections}`;
+        const queryParams = new URLSearchParams({
+            selections: JSON.stringify(consultationConcerns), // Encode the consultationConcerns array as a JSON string
+        });
     
         // Preparing the body with firstName, toEmail, and the static string
         const body = {
             firstName,
             toEmail,
-            email_string: `https://treatement.vercel.app/page?selections=${encodedSelections}`, // Including the static string as part of the body
+            email_string: `https://treatement.vercel.app/page?${queryParams.toString()}`, // Including the static string as part of the body
         };
     
         try {
-            console.log('API URL:', apiUrl);
-            console.log('Request body:', body);
-            
-            // First, send the email info in a separate POST request
-            const emailResponse = await fetch('https://treatment-backend.vercel.app/send_email', {
+            const response = await fetch(`https://treatment-backend.vercel.app/getTreatments?${queryParams.toString()}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Accept': 'application/json',
-                    'Origin': window.location.origin
                 },
-                mode: 'cors',
-                credentials: 'omit',
-                body: JSON.stringify(body)
-            });
-
-            // Then get the treatments with a GET request
-            const response = await fetch(apiUrl, {
-                method: 'GET',
-                headers: {
-                    'Accept': 'application/json',
-                    'Origin': window.location.origin
-                },
-                mode: 'cors',
-                credentials: 'omit'
+                body: JSON.stringify(body), // Send the firstName, toEmail, and email_string in the request body
             });
     
             if (response.ok) {
                 const results = await response.json();
                 // Handle success, possibly navigate to a results page or display in current component
                 console.log(results);
-                navigate(`/page?selections=${encodedSelections}`);
+                navigate(`/page?${queryParams.toString()}`);
             } else {
                 // Handle HTTP error responses
                 console.error('Server error:', response.statusText);

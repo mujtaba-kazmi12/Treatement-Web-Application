@@ -111,113 +111,46 @@ const ConditionSection = ({ condition }) => {
 const ConditionLayout = () => {
   const location = useLocation();
   const [conditionsData, setConditionsData] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchTreatments = async () => {
-      setIsLoading(true);
-      try {
-        const searchParams = new URLSearchParams(window.location.search);
-        const selectionsParam = searchParams.get('selections');
-        
-        if (!selectionsParam) {
-          setError('No consultation data found. Please start a new consultation.');
-          setIsLoading(false);
-          return;
-        }
-        
+    const queryParams = new URLSearchParams(location.search);
+    const selectionsEncoded = queryParams.get('selections');
+
+    if (selectionsEncoded) {
+      const apiEndpoint = `https://treatment-backend.vercel.app/getTreatments?selections=${selectionsEncoded}`;
+      
+      const fetchData = async () => {
         try {
-          // Parse the selections directly from the parameter
-          const parsedSelections = JSON.parse(selectionsParam);
-          console.log('Parsed selections:', parsedSelections);
-          
-          // Using the same direct encoding approach as in FormSubmit.js
-          const encodedSelections = encodeURIComponent(JSON.stringify(parsedSelections));
-          const apiUrl = `https://treatment-backend.vercel.app/getTreatments?selections=${encodedSelections}`;
-          
-          console.log('Fetching from API URL:', apiUrl);
-          
-          const response = await fetch(apiUrl, {
-            method: 'GET',
+          const response = await fetch(apiEndpoint, {
+            method: 'POST',
             headers: {
-              'Accept': 'application/json',
-              'Origin': window.location.origin
+              'Content-Type': 'application/json',
+              // Include any other necessary headers
             },
-            mode: 'cors',
-            credentials: 'omit',
           });
 
           if (!response.ok) {
-            const errorData = await response.json();
-            console.error('API Error:', errorData);
-            setError(errorData.error || 'Error fetching treatment data');
-            setIsLoading(false);
-            return;
+            throw new Error(`HTTP error! status: ${response.status}`);
           }
 
           const data = await response.json();
-          console.log('API Response:', data);
-          setConditionsData(data);
+          setConditionsData(data); // Assuming this API call returns an array of conditions
         } catch (error) {
           console.error('Error fetching data:', error);
-          setError(error.message || 'Failed to fetch treatment data');
-        } finally {
-          setIsLoading(false);
         }
-      } catch (error) {
-        console.error('Error parsing selections:', error);
-        setError('Error parsing consultation data');
-      }
-    };
+      };
 
-    fetchTreatments();
-  }, []);
-
-  if (isLoading) {
-    return (
-      <>
-        <Navbar />
-        <div className="container mx-auto px-6 py-8 mt-5 flex justify-center items-center">
-          <div className="text-center">
-            <svg className="animate-spin h-10 w-10 text-strella mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-            </svg>
-            <p className="mt-2">Loading your personalized treatments...</p>
-          </div>
-        </div>
-      </>
-    );
-  }
-
-  if (error) {
-    return (
-      <>
-        <Navbar />
-        <div className="container mx-auto px-6 py-8 mt-5">
-          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
-            <p>Sorry, we encountered an error: {error}</p>
-            <p className="mt-2">Please try again or contact support.</p>
-          </div>
-        </div>
-      </>
-    );
-  }
+      fetchData();
+    }
+  }, [location.search]);
 
   return (
     <>
       <Navbar />
       <div className="container mx-auto px-6 py-8 mt-5">
-        {conditionsData && conditionsData.length > 0 ? (
-          conditionsData.map((condition) => (
-            <ConditionSection key={condition.concern} condition={condition} />
-          ))
-        ) : (
-          <div className="text-center py-10">
-            <p>No treatment recommendations found. Please try a different consultation.</p>
-          </div>
-        )}
+        {conditionsData?.map((condition) => (
+          <ConditionSection key={condition.concern} condition={condition} />
+        ))}
       </div>
     </>
   );
