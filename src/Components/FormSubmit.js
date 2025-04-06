@@ -21,10 +21,26 @@ const ContactForm = () => {
         const firstName = formData.get('firstName');
         const toEmail = formData.get('email');
     
+        // Make sure consultationConcerns exists and is properly structured
+        if (!consultationConcerns || !Array.isArray(consultationConcerns) || consultationConcerns.length === 0) {
+            console.error('Invalid or empty consultationConcerns', consultationConcerns);
+            setIsLoading(false);
+            alert('Missing consultation data. Please go back and try again.');
+            return;
+        }
+
+        // Ensure each object in the array has the correct format
+        const validConsultationData = consultationConcerns.map(item => ({
+            bodyPart: item.bodyPart,
+            concerns: Array.isArray(item.concerns) ? item.concerns : []
+        }));
+    
         // Preparing the query parameters for the selections only
-        const queryParams = new URLSearchParams({
-            selections: JSON.stringify(consultationConcerns), // Encode the consultationConcerns array as a JSON string
-        });
+        const selectionsJson = JSON.stringify(validConsultationData);
+        console.log('Sending to API:', selectionsJson);
+        
+        const queryParams = new URLSearchParams();
+        queryParams.append('selections', selectionsJson);
     
         // Preparing the body with firstName, toEmail, and the static string
         const body = {
@@ -34,6 +50,9 @@ const ContactForm = () => {
         };
     
         try {
+            console.log('API URL:', `https://treatment-backend.vercel.app/getTreatments?${queryParams.toString()}`);
+            console.log('Request body:', body);
+            
             const response = await fetch(`https://treatment-backend.vercel.app/getTreatments?${queryParams.toString()}`, {
                 method: 'POST',
                 headers: {

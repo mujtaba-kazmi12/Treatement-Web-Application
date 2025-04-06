@@ -3,8 +3,24 @@ import { useNavigate } from 'react-router-dom';
 const SelectionsPanel = ({ consultationConcerns, clearSelections, finishConsultation }) => {
   const navigate = useNavigate();
   const handleFinishConsultation = () => {
-    navigate('/form', { state: { consultationConcerns } });
-    
+    // Check if consultationConcerns is valid
+    if (!consultationConcerns || consultationConcerns.length === 0) {
+      alert('Please select at least one concern before proceeding');
+      return;
+    }
+
+    // Ensure each entry has the correct structure
+    const validConsultation = consultationConcerns.map(entry => ({
+      bodyPart: entry.bodyPart,
+      concerns: Array.isArray(entry.concerns) ? entry.concerns : []
+    }));
+
+    // Only navigate if we have valid concerns
+    if (validConsultation.length > 0) {
+      navigate('/form', { state: { consultationConcerns: validConsultation } });
+    } else {
+      alert('Please select at least one concern before proceeding');
+    }
   };
   // Check to see if we have any selections
   const hasSelections = consultationConcerns.length > 0;
