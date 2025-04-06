@@ -117,7 +117,7 @@ const ConditionLayout = () => {
     const selectionsEncoded = queryParams.get('selections');
 
     if (selectionsEncoded) {
-      const apiEndpoint = `https://treatment-backend.vercel.app/getTreatments?selections=${selectionsEncoded}`;
+      const apiEndpoint = `https://health-app-backend-ten.vercel.app/getTreatments?selections=${selectionsEncoded}`;
       
       const fetchData = async () => {
         try {

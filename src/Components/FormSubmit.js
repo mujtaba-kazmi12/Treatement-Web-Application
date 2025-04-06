@@ -34,7 +34,7 @@ const ContactForm = () => {
         };
     
         try {
-            const response = await fetch(`https://treatment-backend.vercel.app/getTreatments?${queryParams.toString()}`, {
+            const response = await fetch(`https://health-app-backend-ten.vercel.app/getTreatments?${queryParams.toString()}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
