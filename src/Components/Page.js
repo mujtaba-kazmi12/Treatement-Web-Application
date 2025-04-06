@@ -139,9 +139,8 @@ const ConditionLayout = () => {
           console.log('Fetching from API URL:', apiUrl);
           
           const response = await fetch(apiUrl, {
-            method: 'POST',
+            method: 'GET',
             headers: {
-              'Content-Type': 'application/json',
               'Accept': 'application/json',
               'Origin': window.location.origin
             },

@@ -55,7 +55,8 @@ const ContactForm = () => {
             console.log('API URL:', apiUrl);
             console.log('Request body:', body);
             
-            const response = await fetch(apiUrl, {
+            // First, send the email info in a separate POST request
+            const emailResponse = await fetch('https://treatment-backend.vercel.app/send_email', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -64,7 +65,18 @@ const ContactForm = () => {
                 },
                 mode: 'cors',
                 credentials: 'omit',
-                body: JSON.stringify(body), // Send the firstName, toEmail, and email_string in the request body
+                body: JSON.stringify(body)
+            });
+
+            // Then get the treatments with a GET request
+            const response = await fetch(apiUrl, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Origin': window.location.origin
+                },
+                mode: 'cors',
+                credentials: 'omit'
             });
     
             if (response.ok) {
