@@ -39,25 +39,31 @@ const ContactForm = () => {
         const selectionsJson = JSON.stringify(validConsultationData);
         console.log('Sending to API:', selectionsJson);
         
-        const queryParams = new URLSearchParams();
-        queryParams.append('selections', selectionsJson);
+        // Directly use the encoded query parameter instead of using URLSearchParams
+        // This avoids double-encoding issues
+        const encodedSelections = encodeURIComponent(selectionsJson);
+        const apiUrl = `https://treatment-backend.vercel.app/getTreatments?selections=${encodedSelections}`;
     
         // Preparing the body with firstName, toEmail, and the static string
         const body = {
             firstName,
             toEmail,
-            email_string: `https://treatement.vercel.app/page?${queryParams.toString()}`, // Including the static string as part of the body
+            email_string: `https://treatement.vercel.app/page?selections=${encodedSelections}`, // Including the static string as part of the body
         };
     
         try {
-            console.log('API URL:', `https://treatment-backend.vercel.app/getTreatments?${queryParams.toString()}`);
+            console.log('API URL:', apiUrl);
             console.log('Request body:', body);
             
-            const response = await fetch(`https://treatment-backend.vercel.app/getTreatments?${queryParams.toString()}`, {
+            const response = await fetch(apiUrl, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'Origin': window.location.origin
                 },
+                mode: 'cors',
+                credentials: 'omit',
                 body: JSON.stringify(body), // Send the firstName, toEmail, and email_string in the request body
             });
     
@@ -65,7 +71,7 @@ const ContactForm = () => {
                 const results = await response.json();
                 // Handle success, possibly navigate to a results page or display in current component
                 console.log(results);
-                navigate(`/page?${queryParams.toString()}`);
+                navigate(`/page?selections=${encodedSelections}`);
             } else {
                 // Handle HTTP error responses
                 console.error('Server error:', response.statusText);

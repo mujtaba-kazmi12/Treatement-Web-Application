@@ -115,24 +115,38 @@ const ConditionLayout = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const queryParams = new URLSearchParams(location.search);
-    const selectionsEncoded = queryParams.get('selections');
-
-    if (selectionsEncoded) {
+    const fetchTreatments = async () => {
       setIsLoading(true);
-      setError(null);
-      
-      const apiEndpoint = `https://treatment-backend.vercel.app/getTreatments?selections=${selectionsEncoded}`;
-      
-      const fetchData = async () => {
+      try {
+        const searchParams = new URLSearchParams(window.location.search);
+        const selectionsParam = searchParams.get('selections');
+        
+        if (!selectionsParam) {
+          setError('No consultation data found. Please start a new consultation.');
+          setIsLoading(false);
+          return;
+        }
+        
         try {
-          // Ensure the selections parameter is properly URL-encoded
-          const response = await fetch(apiEndpoint, {
+          // Parse the selections directly from the parameter
+          const parsedSelections = JSON.parse(selectionsParam);
+          console.log('Parsed selections:', parsedSelections);
+          
+          // Using the same direct encoding approach as in FormSubmit.js
+          const encodedSelections = encodeURIComponent(JSON.stringify(parsedSelections));
+          const apiUrl = `https://treatment-backend.vercel.app/getTreatments?selections=${encodedSelections}`;
+          
+          console.log('Fetching from API URL:', apiUrl);
+          
+          const response = await fetch(apiUrl, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
+              'Accept': 'application/json',
+              'Origin': window.location.origin
             },
-            // No need to send body for this request as we're already passing selections in URL
+            mode: 'cors',
+            credentials: 'omit',
           });
 
           if (!response.ok) {
@@ -152,11 +166,14 @@ const ConditionLayout = () => {
         } finally {
           setIsLoading(false);
         }
-      };
+      } catch (error) {
+        console.error('Error parsing selections:', error);
+        setError('Error parsing consultation data');
+      }
+    };
 
-      fetchData();
-    }
-  }, [location.search]);
+    fetchTreatments();
+  }, []);
 
   if (isLoading) {
     return (
